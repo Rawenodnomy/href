@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link type="text/css" href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="div1">
+    {% for i in menu %}
+        <a class="menu" href="{{i.url}}">{{i.name}}</a>
+    {% endfor %}
+</div>
+
+
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <h2 class="active"> {{title}} </h2>
+
+
+          <br>
+          <br>
+          <br>
+
+          <form action="/insert" method="POST">
+            <input type="text" class="fadeIn second" name="log" placeholder="Логин">
+            <input type="password" class="fadeIn third" name="pass" placeholder="Пароль">
+            <input type="password" class="fadeIn third" name="passtwo" placeholder="Повтор пароля">
+            <br>
+            <br>
+            <input type="submit" class="fadeIn fourth" value="Зарегистрироваться">
+            {% for msg in get_flashed_messages() %}
+            <p style="color:red;">{{msg}}</p>
+            {% endfor %}
+          </form>
+
+          <br>
+          <br>
+
+
+
+        </div>
+      </div>
+</body>
+</html>
+

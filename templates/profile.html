@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link type="text/css" href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="div1">
+    {% for i in menu %}
+        <a class="menu" href="{{i.url}}">{{i.name}}</a>
+    {% endfor %}
+</div>
+
+    <h1>{{session['user_login']}}</h1>
+    {% for h in hrefs %}
+    <form action="/updatehref" method="post">
+    <div class="wrapper fadeInDown">
+        <div id="formContent2">
+            <table >
+                <thead>
+                <tr>
+                  <th>Ссылка</th>
+                  <th>Тип</th>
+                  <th>Кол-во переходов</th>
+                  <th>Имя</th>
+                  <th>Тип</th>
+                  <th>Сохранить</th>
+                  <th>Удалить</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+
+                  <td ><a href="{{baselink}}href/{{h[2]}}">{{baselink}}href/{{h[2]}}</a></td>
+                  <td>{{h[7]}}</td>
+                  <td>{{h[5]}}</td>
+
+                  <td class="hrefss"><input class ='hrefss' value="{{h[2]}}" name="hreflink" type="text"></td>
+                  <input name="idlink" type="text" value="{{h[0]}}" style="display:none;">
+
+                  <td>
+
+
+
+
+
+                </select>
+
+
+
+
+                    <select name="types" class="opt" id="types">
+                        <option value="0">-</option>
+                    {% for t in type %}
+
+                    <option value="{{t[0]}}">{{t[1]}}</option>
+                    {% endfor %}
+                </td>
+                  </select>
+
+
+                  <td><button class="btn">Сохранить</button></td></form>
+                </form>
+                <form action="/delete" method="POST">
+                    <td><button name="idd" class="btn" value="{{h[0]}}">Удалить</button></td>
+                </form>
+
+                  <td>{% for msg in get_flashed_messages() %}
+                    {{msg}}
+                    {% endfor %}</td>
+                </tr>
+
+              </tbody>
+              </table>
+        </div>
+
+      </div>
+
+
+      {% endfor %}
+
+
+
+<form action="/logout" method="post">
+    <button class="btn2">Выйти</button>
+</form>
+
+</body>
+</html>

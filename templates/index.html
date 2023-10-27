@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link type="text/css" href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="div1">
+    {% for i in menu %}
+        <a class="menu" href="{{i.url}}">{{i.name}}</a>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+<div class="wrapper fadeInDown">
+        <div id="ind">
+          <h2 class="active"> {{title}} </h2>
+
+
+          <br>
+          <br>
+          <br>
+
+          <form action="/short" method="POST">
+            <input type="text" class="fadeIn second" name="href" placeholder="Ваша ссылка"><br><br>
+            <input type="radio" id="pub" name="how" value="{{type[0][0]}}" checked/>
+            <label for="pub">Публичная</label>
+
+            {% if 'user_login' in session and session['user_login']!=None: %}
+            <input type="radio" id="obsh" name="how" value="{{type[1][0]}}"  />
+            <label for="obsh">Общая</label>
+            <input type="radio" id="priv" name="how" value="{{type[2][0]}}"  />
+            <label for="priv">Приватная</label>
+            {% else: %}
+            <input type="radio" id="obsh" name="how" value="{{type[1][0]}}" disabled />
+            <label for="obsh">Общая</label>
+            <input type="radio" id="priv" name="how" value="{{type[2][0]}}" disabled />
+            <label for="priv">Приватная</label>
+            {% endif %}
+            <br>
+            <br>
+
+              <label for="psevdo">Псевдоним</label>
+              <input id="psevdo" name="psevdo" />
+<br>
+            <br>
+            <input type="submit" class="fadeIn fourth" value="Сократить">
+            <p style="color:red">{% for msg in get_flashed_messages() %}</p>
+
+              {% if baselink=='': %}
+              <p>{{msg}}</p>
+              {% else: %}
+              <p>Ваша ссылка:</p>
+                <a href="{{baselink}}href/{{msg}}">{{baselink}}href/{{msg}}</a>
+              {% endif %}
+            {% endfor %}
+          </form>
+
+          <br>
+          <br>
+
+
+
+        </div>
+      </div>
+
+
+</body>
+</html>
+
+
+
+
+
