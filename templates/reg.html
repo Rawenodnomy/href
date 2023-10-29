@@ -15,22 +15,35 @@
 </div>
 
 
-          <h2>  {{title}} </h2>
 
 
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <h2 class="active"> {{title}} </h2>
 
-          <form action="/createUser" method="POST">
-            <input type="text" name="log" placeholder="Логин">
-            <input type="password" name="pass" placeholder="Пароль">
-            <input type="password"  name="passtwo" placeholder="Повтор пароля">
 
-            <input type="submit" value="Зарегистрироваться">
+          <br>
+          <br>
+          <br>
+
+          <form action="/insert" method="POST">
+            <input type="text" class="fadeIn second" name="log" placeholder="Логин">
+            <input type="password" class="fadeIn third" name="pass" placeholder="Пароль">
+            <input type="password" class="fadeIn third" name="passtwo" placeholder="Повтор пароля">
+            <br>
+            <br>
+            <input type="submit" class="fadeIn fourth" value="Зарегистрироваться">
             {% for msg in get_flashed_messages() %}
             <p style="color:red;">{{msg}}</p>
             {% endfor %}
           </form>
 
+          <br>
+          <br>
 
+
+
+        </div>
+      </div>
 </body>
 </html>
-
